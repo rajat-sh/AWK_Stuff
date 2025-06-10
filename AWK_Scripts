@@ -1,3 +1,10 @@
 For xlate 
 
 gawk '/PAT/ { match($0, /:([^\/]*)\//, arr); if (arr[1] != "") count[arr[1]]++ } END { for (str in count) print count[str], str }' xlate.text | sort -nr | head -20
+
+
+Using "show conn" file output find the top hosts in file
+
+gawk '/TCP|UDP|ICMP/ { if (match($0, /([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/, arr)) count[arr[1]]++ } END { for (ip in count) print count[ip], ip }' astraconn.text | sort -nr | head -30
+
+
