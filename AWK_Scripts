@@ -2,17 +2,6 @@ For xlate, using the "show xlate" output find the hosts with most translation sl
 
 gawk '/PAT/ { match($0, /:([^\/]*)\//, arr); if (arr[1] != "") count[arr[1]]++ } END { for (str in count) print count[str], str }' xlate.text | sort -nr | head -30
 
-Using "show conn" file output find the top hosts in file
-
-gawk '/TCP|UDP|ICMP/ { if (match($0, /([0-9]+\.[0-9]+\.[0-9]+\.[0-9]+)/, arr)) count[arr[1]]++ } END { for (ip in count) print count[ip], ip }' conn.text | sort -nr | head -30
-
-Using "show conn" file output find the top ports in file.
-
-gawk '/TCP|UDP|ICMP/ { if (match($0, /:([0-9]+)/, arr)) count[arr[1]]++ } END { for (port in count) print count[port], port }' conn.text | sort -nr | head -30
-
-
-
-Argument to head needs to be changed to print the required number of entries.
 
 
 
